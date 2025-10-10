@@ -3,6 +3,7 @@ title: "我的第一篇文章"
 date: 2025-10-09
 draft: false
 tags: ["测试", "Hugo"]
+categories: ["技术", "数据分析"]
 ---
 
 ## 欢迎来到我的博客
