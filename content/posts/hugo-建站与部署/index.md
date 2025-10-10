@@ -68,6 +68,7 @@ tree
 
 
 ## 3. 主题下载
+> blowfish 官方文档在[这里](https://blowfish.page/)
 
 ```bash
 # bash commands !

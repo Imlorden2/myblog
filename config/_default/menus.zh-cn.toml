@@ -84,6 +84,11 @@
     pageRef = "categories"
     weight = 30
 
+[[main]]
+    name = "系列"
+    pageRef = "series"
+    weight = 35
+
 
 [[main]]
     name = "关于"

@@ -9,12 +9,12 @@
     <managingEditor>youremail@example.com (Lorden Jay)</managingEditor>
     <webMaster>youremail@example.com (Lorden Jay)</webMaster>
     <copyright>© 2025 Lorden Jay</copyright>
-    <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/myblog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Oct 2025 14:59:28 +0800</lastBuildDate><atom:link href="http://localhost:1313/myblog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo</title>
       <link>http://localhost:1313/myblog/tags/hugo/</link>
-      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 10 Oct 2025 14:59:28 +0800</pubDate>
       <author>youremail@example.com (Lorden Jay)</author>
       <guid>http://localhost:1313/myblog/tags/hugo/</guid>
       <description></description>
@@ -22,11 +22,11 @@
     </item>
     
     <item>
-      <title>测试</title>
-      <link>http://localhost:1313/myblog/tags/%E6%B5%8B%E8%AF%95/</link>
-      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <title>网站</title>
+      <link>http://localhost:1313/myblog/tags/%E7%BD%91%E7%AB%99/</link>
+      <pubDate>Fri, 10 Oct 2025 14:59:28 +0800</pubDate>
       <author>youremail@example.com (Lorden Jay)</author>
-      <guid>http://localhost:1313/myblog/tags/%E6%B5%8B%E8%AF%95/</guid>
+      <guid>http://localhost:1313/myblog/tags/%E7%BD%91%E7%AB%99/</guid>
       <description></description>
       
     </item>
