@@ -18,7 +18,7 @@
       <author>youremail@example.com (Lorden Jay)</author>
       <guid>http://localhost:1313/myblog/posts/hugo-%E5%BB%BA%E7%AB%99%E4%B8%8E%E9%83%A8%E7%BD%B2/</guid>
       <description></description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/myblog/posts/hugo-%E5%BB%BA%E7%AB%99%E4%B8%8E%E9%83%A8%E7%BD%B2/cover.png" />
     </item>
     
   </channel>

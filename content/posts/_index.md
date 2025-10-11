@@ -1,6 +1,5 @@
 ---
-title: "博客文章"
-description: "记录技术学习与实践的点滴"
+title: "Blogs"
+description: "查看我的所有博客。"
 ---
 
-这里汇集了我在技术探索过程中的所有文章。
