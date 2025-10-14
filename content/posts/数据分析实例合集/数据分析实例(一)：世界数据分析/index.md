@@ -15,6 +15,7 @@ weight: 2
 
 
 > 环境信息：[kaggle](https://www.kaggle.com/) 内置 Python
+>
 > 数据来源：本文采用的数据已经上传至[我的kaggle](https://www.kaggle.com/datasets/jaylorden/world-data)
 
 
@@ -318,7 +319,7 @@ df[df['Continent'] == 'Africa'].nsmallest(1, 'Area')
 
 就是塞舌尔，刚好这个数据集有所收录。
 
-Seychelles(塞舌尔)：印度洋上的奢华度假胜地，以原始自然美景、珍稀物种和高端旅游闻名的非洲最小国家。拥有世界最美海滩（如安塞拉齐奥海滩）；独特物种丰富，有象龟、海椰子、珍稀鸟类。
+**Seychelles(塞舌尔)**：印度洋上的奢华度假胜地，以原始自然美景、珍稀物种和高端旅游闻名的非洲最小国家。拥有世界最美海滩（如安塞拉齐奥海滩）；独特物种丰富，有象龟、海椰子、珍稀鸟类。
 
 作为反映国家经济情况的指标，GDP 增速也同样重要。**气泡图**非常适合用来描述多个变量。相比于散点图，它还有气泡大小和气泡颜色用来表示变量。
 
@@ -440,7 +441,7 @@ bottom_growth = bubble_data.nsmallest(7, 'Average_Growth_Rate')
     - 农业技术先进（滴灌技术）
     - 面积：20,770 km²，前10中最大的国家之一
 
----
+
 8. Switzerland (瑞士) - $20.8M/km²
 
 - 特点：阿尔卑斯山脉国家，高单位面积GDP令人惊讶
