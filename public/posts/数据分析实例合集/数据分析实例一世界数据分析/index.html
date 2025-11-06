@@ -1,0 +1,2082 @@
+<!doctype html>
+<html
+  lang="zh-cn"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"><head><script src="/myblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=myblog/livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="zh-cn">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  <title>数据分析实例(一)：世界数据分析 &middot; 探索世界</title>
+    <meta name="title" content="数据分析实例(一)：世界数据分析 &middot; 探索世界">
+
+  
+  <meta name="description" content="Lorden Jay&#39;s blog.">
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E4%B8%80%E4%B8%96%E7%95%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/myblog/css/main.bundle.min.98419a8acd70d20317a2e59fe3d6d5cace63ac39c2c9cfe6138054e01dc593322cd75672fe516c72914a5924ea71c169c16e45b15001d6170bac03a8695d7f3f.css"
+    integrity="sha512-mEGais1w0gMXouWf49bVys5jrDnCyc/mE4BU4B3FkzIs11Zy/lFscpFKWSTqccFpwW5FsVAB1hcLrAOoaV1/Pw==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/myblog/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+    
+    
+    
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/myblog/js/main.bundle.min.f99aa39bcfb5d16a28ec2236bd358df5e465058a67f58b42534a3b15882a6a3513791fd27248c6b5b5cef06337f714070d4784fb776f44d930309b64cce1a2e0.js"
+      integrity="sha512-&#43;Zqjm8&#43;10Woo7CI2vTWN9eRlBYpn9YtCU0o7FYgqajUTeR/SckjGtbXO8GM39xQHDUeE&#43;3dvRNkwMJtkzOGi4A=="
+      data-copy="复制"
+      data-copied="已复制"></script>
+  
+  
+    
+    <script src="/myblog/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/myblog/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/myblog/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/myblog/favicon-16x16.png">
+    <link rel="manifest" href="/myblog/site.webmanifest">
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  <meta property="og:url" content="http://localhost:1313/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E4%B8%80%E4%B8%96%E7%95%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">
+  <meta property="og:site_name" content="探索世界">
+  <meta property="og:title" content="数据分析实例(一)：世界数据分析">
+  <meta property="og:description" content="Lorden Jay&#39;s blog.">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-10T16:11:06+08:00">
+    <meta property="article:modified_time" content="2025-10-10T16:11:06+08:00">
+    <meta property="og:image" content="http://localhost:1313/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E4%B8%80%E4%B8%96%E7%95%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/cover.jpg">
+      <meta property="og:see_also" content="http://localhost:1313/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B-%E5%AF%BC%E8%A8%80/">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E4%B8%80%E4%B8%96%E7%95%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/cover.jpg">
+  <meta name="twitter:title" content="数据分析实例(一)：世界数据分析">
+  <meta name="twitter:description" content="Lorden Jay&#39;s blog.">
+
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "数据分析实例(一)：世界数据分析",
+    "headline": "数据分析实例(一)：世界数据分析",
+    
+    
+    "inLanguage": "zh-cn",
+    "url" : "http:\/\/localhost:1313\/myblog\/posts\/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86\/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E4%B8%80%E4%B8%96%E7%95%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Lorden Jay"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-10-10T16:11:06\u002b08:00",
+    "datePublished": "2025-10-10T16:11:06\u002b08:00",
+    
+    "dateModified": "2025-10-10T16:11:06\u002b08:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "927"
+  }]
+  </script>
+
+
+
+  
+  
+    <meta name="author" content="Lorden Jay">
+  
+  
+    
+      
+        
+          <link href="https://codepen.io/username" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://github.com/Imlorden2" rel="me">
+        
+      
+    
+  
+
+  
+  
+
+<script src="/myblog/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        跳过正文
+      </a>
+    </div>
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div
+  class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start gap-x-3 pt-[2px] pr-0 pb-[3px] pl-0">
+  
+  
+    
+    
+      <div>
+        <a href="/myblog/" class="flex">
+          <span class="sr-only">探索世界</span>
+          
+            <img
+              src="/myblog/img/logo.png"
+              width="96"
+              height="96"
+              class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom"
+              alt="探索世界">
+          
+        </a>
+      </div>
+    
+
+  <div class="flex flex-1 items-center justify-between">
+    <nav class="flex space-x-3">
+      
+        <a href="/myblog/" class="text-base font-medium">
+          探索世界
+        </a>
+      
+    </nav>
+    
+  <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+    
+      
+        
+  <a
+  href="/myblog/posts/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Blogs">
+    博客
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/myblog/tags/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Tags">
+    标签
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/myblog/categories/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Categories">
+    分类
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/myblog/series/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Series">
+    系列
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/myblog/about/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="关于">
+    关于
+  </p>
+</a>
+
+
+
+      
+        
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a
+      
+      class="text-base font-medium hover:text-primary-600 dark:hover:text-primary-400"
+      title="">
+      <p>
+        更多
+      </p>
+    </a>
+    <span>
+      <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+          <a
+            href="https://github.com/Imlorden2"
+            
+              target="_blank"
+            
+            class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+            
+            <p class="text-sm font-sm" title="">
+              项目
+            </p>
+          </a>
+        
+          <a
+            href=""
+            
+            class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+            
+            <p class="text-sm font-sm" title="">
+              摄影
+            </p>
+          </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      
+    
+
+    
+
+    
+
+    
+      <button
+        id="search-button"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="搜索 (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <div class=" flex items-center">
+        <button
+          id="appearance-switcher"
+          aria-label="Dark mode switcher"
+          type="button"
+          class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+          <div class="flex items-center justify-center dark:hidden">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+          </div>
+          <div class="items-center justify-center hidden dark:flex">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+          </div>
+        </button>
+      </div>
+    
+  </nav>
+
+    
+  <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+    <span></span>
+
+    
+
+    
+
+    
+      <button
+        id="search-button-mobile"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="搜索 (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <button
+        id="appearance-switcher-mobile"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400 me-1">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    
+  </div>
+
+  </div>
+  
+  <div class="-my-2 md:hidden">
+    <div id="menu-button" class="block">
+      
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50 pt-[5px]">
+          <ul
+            class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none text-end max-w-7xl">
+            <li id="menu-close-button">
+              <span
+                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+              </span>
+            </li>
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/myblog/posts/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Blogs">
+      博客
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/myblog/tags/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Tags">
+      标签
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/myblog/categories/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Categories">
+      分类
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/myblog/series/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Series">
+      系列
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/myblog/about/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="关于">
+      关于
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href=""
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="">
+      更多
+    </p>
+    <span>
+      <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+    </span>
+  </a>
+</li>
+
+  <li class="mt-1">
+    <a
+      href="https://github.com/Imlorden2"
+      
+        target="_blank"
+      
+      class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+      
+      <p class="text-sm font-small" title="">
+        项目
+      </p>
+    </a>
+  </li>
+
+  <li class="mt-1">
+    <a
+      href=""
+      
+      class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+      
+      <p class="text-sm font-small" title="">
+        摄影
+      </p>
+    </a>
+  </li>
+
+<li class="mb-2"></li>
+
+
+
+            
+
+          </ul>
+          
+        </div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+      
+      
+      
+      
+        
+
+
+    <div id="hero" class="h-[150px] md:h-[200px]"></div>
+  
+  <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom">
+    
+    
+      
+    
+    <img
+      id="background-image"
+      src="/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E4%B8%80%E4%B8%96%E7%95%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/cover_hu_7a91f059171b0ef.jpg"
+      alt="Background Image"
+      class="absolute inset-0 w-full h-full object-cover">
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal"></div>
+    <div
+      class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal"></div>
+  </div>
+
+  
+    <div
+      id="background-blur"
+      class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+    
+    
+    <script
+      type="text/javascript"
+      src="/myblog/js/background-blur.min.00a57c73ea12f2cab2980c3c3d649e89f6d82f190f74bbe2b67f2f5e39ab7d032ece47086400ca05396758aace13299da49aca43ea643d2625e62c506267a169.js"
+      integrity="sha512-AKV8c&#43;oS8sqymAw8PWSeifbYLxkPdLvitn8vXjmrfQMuzkcIZADKBTlnWKrOEymdpJrKQ&#43;pkPSYl5ixQYmehaQ=="
+      data-blur-id="background-blur"
+      data-image-id="background-image"
+      data-image-url="/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E4%B8%80%E4%B8%96%E7%95%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/cover.jpg"></script>
+  
+      
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        数据分析实例(一)：世界数据分析
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+
+  
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2025-10-10T16:11:06&#43;08:00">2025年10月10日</time><span class="px-2 text-primary-500">&middot;</span><span>927 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">5 分钟</span>
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        
+      
+        
+          
+            
+              <a class="relative mt-[0.5rem] me-2" href="/myblog/categories/python/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Python
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2" href="/myblog/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    数据分析
+  </span>
+</span>
+
+              </a>
+            
+          
+        
+      
+        
+      
+        
+          
+        
+      
+    </div>
+  
+
+  
+  
+
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img
+        class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4"
+        width="96"
+        height="96"
+        alt="Lorden Jay"
+        src="/myblog/img/author_hu_f9a1c3c89ed1c1b7.png">
+    
+  
+  <div class="place-self-center">
+    
+      <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+        作者
+      </div>
+      <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+        Lorden Jay
+      </div>
+    
+    
+      <div class="text-sm text-neutral-700 dark:text-neutral-400">Thanks for your reading.</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://codepen.io/username"
+          target="_blank"
+          aria-label="Codepen"
+          title="Codepen"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.285 159.704l-234-156c-7.987-4.915-16.511-4.96-24.571 0l-234 156C3.714 163.703 0 170.847 0 177.989v155.999c0 7.143 3.714 14.286 9.715 18.286l234 156.022c7.987 4.915 16.511 4.96 24.571 0l234-156.022c6-3.999 9.715-11.143 9.715-18.286V177.989c-.001-7.142-3.715-14.286-9.716-18.285zM278 63.131l172.286 114.858-76.857 51.429L278 165.703V63.131zm-44 0v102.572l-95.429 63.715-76.857-51.429L234 63.131zM44 219.132l55.143 36.857L44 292.846v-73.714zm190 229.715L61.714 333.989l76.857-51.429L234 346.275v102.572zm22-140.858l-77.715-52 77.715-52 77.715 52-77.715 52zm22 140.858V346.275l95.429-63.715 76.857 51.429L278 448.847zm190-156.001l-55.143-36.857L468 219.132v73.714z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/Imlorden2"
+          target="_blank"
+          aria-label="Github"
+          title="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+      
+        <div class="order-first lg:ml-auto px-0 lg:order-last lg:ps-8">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-10">
+            
+              <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#导言">导言</a></li>
+    <li><a href="#一数据导入">一、数据导入</a>
+      <ul>
+        <li><a href="#1-导入-gdp-数据">1. 导入 GDP 数据</a></li>
+        <li><a href="#2-导入大洲数据">2. 导入大洲数据</a></li>
+        <li><a href="#3-导入人口数据">3. 导入人口数据</a></li>
+        <li><a href="#4-导入面积数据">4. 导入面积数据</a></li>
+      </ul>
+    </li>
+    <li><a href="#二数据探索">二、数据探索</a>
+      <ul>
+        <li><a href="#1-gdp-总量和-gdp-增速">1. GDP 总量和 GDP 增速</a></li>
+        <li><a href="#2-人均-gdp">2. 人均 GDP</a></li>
+        <li><a href="#3-单位面积-gdp">3. 单位面积 GDP</a></li>
+        <li><a href="#三结语">三、结语</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#导言">导言</a></li>
+    <li><a href="#一数据导入">一、数据导入</a>
+      <ul>
+        <li><a href="#1-导入-gdp-数据">1. 导入 GDP 数据</a></li>
+        <li><a href="#2-导入大洲数据">2. 导入大洲数据</a></li>
+        <li><a href="#3-导入人口数据">3. 导入人口数据</a></li>
+        <li><a href="#4-导入面积数据">4. 导入面积数据</a></li>
+      </ul>
+    </li>
+    <li><a href="#二数据探索">二、数据探索</a>
+      <ul>
+        <li><a href="#1-gdp-总量和-gdp-增速">1. GDP 总量和 GDP 增速</a></li>
+        <li><a href="#2-人均-gdp">2. 人均 GDP</a></li>
+        <li><a href="#3-单位面积-gdp">3. 单位面积 GDP</a></li>
+        <li><a href="#三结语">三、结语</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+            
+            
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+  <details
+    class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5"
+    >
+    
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
+    数据分析实例 -
+    这篇文章属于一个选集。
+  </summary>
+  
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B-%E5%AF%BC%E8%A8%80/">
+          § :
+          数据分析实例：导言
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        § :
+        本文
+      </div>
+    
+  
+
+
+  </details>
+
+
+        <div class="article-content max-w-prose mb-20">
+          <blockquote>
+<p>环境信息：<a
+  href="https://www.kaggle.com/"
+    target="_blank"
+  >kaggle</a> 内置 Python</p>
+<p>数据来源：本文采用的数据已经上传至<a
+  href="https://www.kaggle.com/datasets/jaylorden/world-data"
+    target="_blank"
+  >我的kaggle</a></p>
+</blockquote>
+
+<h2 class="relative group">导言 
+    <div id="导言" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e5%af%bc%e8%a8%80" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<hr>
+<p>本系列<a
+  href="https://imlorden2.github.io/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B-%E5%AF%BC%E8%A8%80/"
+    target="_blank"
+  >导言</a>中曾说：</p>
+<blockquote>
+<p>数据是认识世界的方式。</p>
+</blockquote>
+<p>于是第一个数据分析项目就从世界各个国家的数据开始分析，有助于从数据的角度切实体会世界基本形式。</p>
+
+<h2 class="relative group">一、数据导入 
+    <div id="一数据导入" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e4%b8%80%e6%95%b0%e6%8d%ae%e5%af%bc%e5%85%a5" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<hr>
+
+<h3 class="relative group">1. 导入 GDP 数据 
+    <div id="1-导入-gdp-数据" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#1-%e5%af%bc%e5%85%a5-gdp-%e6%95%b0%e6%8d%ae" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/kaggle/input/world-data/2020-2025.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;1. Data shape : </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;2. Columns : </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;3. First 5 rows:&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;4. Data types:&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">1. Data shape : (195, 7)
+</span></span><span class="line"><span class="cl">2. Columns : [&#39;Country&#39;, &#39;2020&#39;, &#39;2021&#39;, &#39;2022&#39;, &#39;2023&#39;, &#39;2024&#39;, &#39;2025&#39;]
+</span></span><span class="line"><span class="cl">3. First 5 rows:
+</span></span><span class="line"><span class="cl">       Country    2020      2021      2022      2023      2024      2025
+</span></span><span class="line"><span class="cl">0  Afghanistan   20136   14278.0   14501.0   17248.0       NaN       NaN
+</span></span><span class="line"><span class="cl">1      Albania   15271   18086.0   19185.0   23388.0   27259.0   28372.0
+</span></span><span class="line"><span class="cl">2      Algeria  164774  185850.0  225709.0  247789.0  264913.0  268885.0
+</span></span><span class="line"><span class="cl">3      Andorra    2885    3325.0    3376.0    3786.0    4038.0    4035.0
+</span></span><span class="line"><span class="cl">4       Angola   66521   84375.0  142442.0  109764.0  115946.0  113343.0
+</span></span><span class="line"><span class="cl">4. Data types:
+</span></span><span class="line"><span class="cl">Country     object
+</span></span><span class="line"><span class="cl">2020       float64
+</span></span><span class="line"><span class="cl">2021       float64
+</span></span><span class="line"><span class="cl">2022       float64
+</span></span><span class="line"><span class="cl">2023       float64
+</span></span><span class="line"><span class="cl">2024       float64
+</span></span><span class="line"><span class="cl">2025       float64
+</span></span><span class="line"><span class="cl">dtype: object
+</span></span></code></pre></div><p>导入数据简单输出可知：</p>
+<ul>
+<li><a
+  href="https://www.kaggle.com/datasets/jaylorden/world-data?select=2020-2025.csv"
+    target="_blank"
+  >本数据集</a>共收集了<strong>195</strong>个国家或地区从2020到2025年<strong>6年</strong>的 GDP 数据；</li>
+<li>单位是 <strong>百万美元（Million USD，10⁶ USD）</strong></li>
+<li>其中除了Country是 object 类型，GDP 都是 float 类型，数据清晰简单；</li>
+</ul>
+
+<h3 class="relative group">2. 导入大洲数据 
+    <div id="2-导入大洲数据" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#2-%e5%af%bc%e5%85%a5%e5%a4%a7%e6%b4%b2%e6%95%b0%e6%8d%ae" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 为 df 添加新列  Continent（大洲信息）</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/kaggle/input/world-data//continental.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">country_to_continent</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># 将 JSON 文件内容加载为 Python 字典</span>
+</span></span><span class="line"><span class="cl">    <span class="n">continent_col</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">country_to_continent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - 取 DataFrame 的 Country 列（国家列）
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - 使用 .map() 方法，根据 country_to_continent 字典进行映射
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - 结果：生成一个新的 Series，内容是每个国家对应的大洲
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Continent&#39;</span><span class="p">,</span> <span class="n">continent_col</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">       Country Continent      2020      2021      2022      2023      2024  \
+</span></span><span class="line"><span class="cl">0  Afghanistan      Asia   20136.0   14278.0   14501.0   17248.0       NaN   
+</span></span><span class="line"><span class="cl">1      Albania    Europe   15271.0   18086.0   19185.0   23388.0   27259.0   
+</span></span><span class="line"><span class="cl">2      Algeria    Africa  164774.0  185850.0  225709.0  247789.0  264913.0   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       2025  data_count  
+</span></span><span class="line"><span class="cl">0       NaN           4  
+</span></span><span class="line"><span class="cl">1   28372.0           6  
+</span></span><span class="line"><span class="cl">2  268885.0           6  
+</span></span></code></pre></div><p>这样，就通过导入 <a
+  href="https://www.kaggle.com/datasets/jaylorden/world-data?select=continental.json"
+    target="_blank"
+  >continental.json 数据</a>，为 dataframe 添加了<code>Continent</code>新列。</p>
+<blockquote>
+<p>“七大洲”中南极洲没有被统计的国家，因此 continental.json 中实际上只有 6 个大洲</p>
+</blockquote>
+<p>因此我们首先就可以先来看看“国家-大洲分布图”：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 核心代码</span>
+</span></span><span class="line"><span class="cl"><span class="n">continent_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>  <span class="c1"># 统计每个大洲的国家数量，返回 Series（按数量降序排列）。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">wedges</span><span class="p">,</span> <span class="n">texts</span><span class="p">,</span> <span class="n">autotexts</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">continent_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>           <span class="c1"># Data values</span>
+</span></span><span class="line"><span class="cl">  <span class="n">labels</span><span class="o">=</span><span class="n">continent_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>     <span class="c1"># Continent names</span>
+</span></span><span class="line"><span class="cl">  <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>                     <span class="c1"># Custom colors</span>
+</span></span><span class="line"><span class="cl">  <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span>                <span class="c1"># Show percentages</span>
+</span></span><span class="line"><span class="cl">  <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>                     <span class="c1"># Start from top</span>
+</span></span><span class="line"><span class="cl">  <span class="n">explode</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span>  <span class="c1"># Separate slices</span>
+</span></span><span class="line"><span class="cl">  <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                       <span class="c1"># Add shadow effect</span>
+</span></span><span class="line"><span class="cl">  <span class="n">textprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;fontweight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>  <span class="c1"># Text styling</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="国家-大洲分布图" src="./continent_distribution.png">
+
+  
+</figure>
+</p>
+<ul>
+<li>饼图更能体现各部分的占比情况和识别主题部分</li>
+<li>非洲和亚洲的国家超过了半数</li>
+<li>没想到大洋洲也能有 14 各国家吧？</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df_oceania</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Oceania&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df_oceania</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">])</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">9                           Australia
+</span></span><span class="line"><span class="cl">58                               Fiji
+</span></span><span class="line"><span class="cl">89                           Kiribati
+</span></span><span class="line"><span class="cl">109                  Marshall Islands
+</span></span><span class="line"><span class="cl">113    Federated States of Micronesia
+</span></span><span class="line"><span class="cl">121                             Nauru
+</span></span><span class="line"><span class="cl">124                       New Zealand
+</span></span><span class="line"><span class="cl">132                             Palau
+</span></span><span class="line"><span class="cl">134                  Papua New Guinea
+</span></span><span class="line"><span class="cl">145                             Samoa
+</span></span><span class="line"><span class="cl">156                   Solomon Islands
+</span></span><span class="line"><span class="cl">175                             Tonga
+</span></span><span class="line"><span class="cl">180                            Tuvalu
+</span></span><span class="line"><span class="cl">188                           Vanuatu
+</span></span><span class="line"><span class="cl">Name: Country, dtype: object
+</span></span></code></pre></div><ul>
+<li><strong>Australia(澳大利亚)</strong>: 世界第六大国,以袋鼠、考拉和发达经济著称的南半球大陆国家</li>
+<li>Fiji(斐济): 太平洋度假天堂,以珊瑚礁、热带海滩和友好文化闻名</li>
+<li>Kiribati(基里巴斯): 赤道附近的低海拔岛国,因气候变化面临被淹没风险</li>
+<li>Marshall Islands(马绍尔群岛): 美国核试验历史遗留地,由29个环礁组成的微型岛国</li>
+<li>Federated States of Micronesia(密克罗尼西亚联邦): 由607个岛屿组成的联邦国家,&ldquo;小岛之国&quot;的字面意义</li>
+<li>Nauru(瑙鲁): 世界第三小国,曾因磷酸盐富裕现面临资源枯竭</li>
+<li><strong>New Zealand(新西兰)</strong>: 以壮丽自然风光、毛利文化和《指环王》拍摄地著称</li>
+<li>Palau(帕劳): 潜水者天堂,拥有水母湖等独特海洋生态系统</li>
+<li>Papua New Guinea(巴布亚新几内亚): 世界语言最多样化国家(800+种),部落文化保存完好</li>
+<li>Samoa(萨摩亚): 波利尼西亚文化发源地之一,&ldquo;快乐岛民&quot;的代表</li>
+<li>Solomon Islands(所罗门群岛): 二战太平洋战场重要遗址,保留传统美拉尼西亚文化</li>
+<li>Tonga(汤加): 太平洋唯一从未被殖民的君主制岛国</li>
+<li>Tuvalu(图瓦卢): 世界第四小国,正因海平面上升考虑整体移民</li>
+<li>Vanuatu(瓦努阿图): 冒险旅游胜地,拥有活火山和蹦极发源地</li>
+</ul>
+<blockquote>
+<p>除澳新外，其余12国均为小型岛国，面临气候变化、经济脆弱等挑战。</p>
+</blockquote>
+
+<h3 class="relative group">3. 导入人口数据 
+    <div id="3-导入人口数据" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#3-%e5%af%bc%e5%85%a5%e4%ba%ba%e5%8f%a3%e6%95%b0%e6%8d%ae" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df_population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/kaggle/input/world-data/population.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df_population</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_population</span><span class="p">[[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;2021&#39;</span><span class="p">,</span> <span class="s1">&#39;2022&#39;</span><span class="p">,</span> <span class="s1">&#39;2023&#39;</span><span class="p">,</span> <span class="s1">&#39;2024&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">df</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">df_population</span><span class="p">[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;countryiso3code&#39;</span><span class="p">]],</span>
+</span></span><span class="line"><span class="cl">  <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;Country&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">population_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">countryiso_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;countryiso3code&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="n">population_col</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;countryiso3code&#39;</span><span class="p">,</span> <span class="n">countryiso_col</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Country</th>
+          <th style="text-align: left">countryiso3code</th>
+          <th style="text-align: left">Continent</th>
+          <th style="text-align: right">population</th>
+          <th style="text-align: right">&hellip;</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Afghanistan</td>
+          <td style="text-align: left">AFG</td>
+          <td style="text-align: left">Asia</td>
+          <td style="text-align: right">4.07501e+07</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Albania</td>
+          <td style="text-align: left">ALB</td>
+          <td style="text-align: left">Europe</td>
+          <td style="text-align: right">2.77756e+06</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Algeria</td>
+          <td style="text-align: left">DZA</td>
+          <td style="text-align: left">Africa</td>
+          <td style="text-align: right">4.54518e+07</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Andorra</td>
+          <td style="text-align: left">AND</td>
+          <td style="text-align: left">Europe</td>
+          <td style="text-align: right">79648.6</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Angola</td>
+          <td style="text-align: left">AGO</td>
+          <td style="text-align: left">Africa</td>
+          <td style="text-align: right">3.56509e+07</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>对于 <a
+  href="https://www.kaggle.com/datasets/jaylorden/world-data?select=population.csv"
+    target="_blank"
+  >population</a> 中的数据，直接取 2020-2024 年人口的平均值作为各个国家目前的人口</li>
+<li>人口单位就是（人）</li>
+</ul>
+<p>我们来看看全球人口最多和最少的十个国家：</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="人口前十" src="./Top%2010%20Countries%20by%20Population.png">
+
+  
+</figure>
+</p>
+<ul>
+<li>India(印度): 2023年超越中国成为世界人口第一大国,IT和制药产业发达</li>
+<li>China(中国): 世界第二大经济体,制造业和科技创新全球领先</li>
+<li>United States(美国): 世界第一大经济体和军事强国,科技和金融中心</li>
+<li>Indonesia(印尼): 东南亚最大经济体,世界最大的群岛国家(17000+岛屿)</li>
+<li>Pakistan(巴基斯坦): 南亚核武器国家,农业和纺织业为主要产业</li>
+<li>Nigeria(尼日利亚): 非洲人口第一大国,石油资源丰富的经济体</li>
+<li>Brazil(巴西): 南美洲最大国家,拥有亚马逊雨林和丰富矿产资源</li>
+<li>Bangladesh(孟加拉国): 世界人口密度最高国家之一,纺织业出口全球第二</li>
+<li>Russia(俄罗斯): 世界面积最大国家,能源和军工产业强国</li>
+<li>Mexico(墨西哥): 拉美第二大经济体,制造业和旅游业发达</li>
+</ul>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="人口后十" src="./Bottom%2010%20Countries%20by%20Population.png">
+
+  
+</figure>
+</p>
+<ul>
+<li>Saint Vincent and the Grenadines(圣文森特和格林纳丁斯): 加勒比群岛国,《加勒比海盗》取景地</li>
+<li>Antigua and Barbuda(安提瓜和巴布达): 加勒比度假胜地,拥有365个海滩传说</li>
+<li>Andorra(安道尔): 庇里牛斯山脉中的袖珍公国,滑雪胜地和免税购物天堂</li>
+<li>Dominica(多米尼克): 加勒比&quot;自然之岛&rdquo;,火山温泉和热带雨林资源丰富</li>
+<li>Saint Kitts and Nevis(圣基茨和尼维斯): 加勒比双岛国,以投资入籍计划闻名</li>
+<li>Marshall Islands(马绍尔群岛): 美国核试验历史遗留地,由29个环礁组成的微型岛国</li>
+<li>San Marino(圣马力诺): 世界最古老共和国之一,意大利境内的微型国家</li>
+<li>Palau(帕劳): 潜水者天堂,拥有水母湖等独特海洋生态系统</li>
+<li>Nauru(瑙鲁): 世界第三小国,曾因磷酸盐富裕现面临资源枯竭</li>
+<li>Tuvalu(图瓦卢): 世界第四小国,正因海平面上升考虑整体移民</li>
+</ul>
+
+<h3 class="relative group">4. 导入面积数据 
+    <div id="4-导入面积数据" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#4-%e5%af%bc%e5%85%a5%e9%9d%a2%e7%a7%af%e6%95%b0%e6%8d%ae" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>和导入大洲数据同理，<a
+  href="https://www.kaggle.com/datasets/jaylorden/world-data?select=areas.json"
+    target="_blank"
+  >面积数据</a>同样是一个 json 文件，因此代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/kaggle/input/world-data/areas.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">area</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># 将 JSON 文件内容加载为 Python 字典</span>
+</span></span><span class="line"><span class="cl">    <span class="n">area_col</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Area&#39;</span><span class="p">,</span> <span class="n">area_col</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Country</th>
+          <th style="text-align: left">countryiso3code</th>
+          <th style="text-align: left">Continent</th>
+          <th style="text-align: right">population</th>
+          <th style="text-align: right">Area</th>
+          <th style="text-align: right">&hellip;</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Afghanistan</td>
+          <td style="text-align: left">AFG</td>
+          <td style="text-align: left">Asia</td>
+          <td style="text-align: right">4.07501e+07</td>
+          <td style="text-align: right">652230</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Albania</td>
+          <td style="text-align: left">ALB</td>
+          <td style="text-align: left">Europe</td>
+          <td style="text-align: right">2.77756e+06</td>
+          <td style="text-align: right">28748</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Algeria</td>
+          <td style="text-align: left">DZA</td>
+          <td style="text-align: left">Africa</td>
+          <td style="text-align: right">4.54518e+07</td>
+          <td style="text-align: right">2.38174e+06</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Andorra</td>
+          <td style="text-align: left">AND</td>
+          <td style="text-align: left">Europe</td>
+          <td style="text-align: right">79648.6</td>
+          <td style="text-align: right">468</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Angola</td>
+          <td style="text-align: left">AGO</td>
+          <td style="text-align: left">Africa</td>
+          <td style="text-align: right">3.56509e+07</td>
+          <td style="text-align: right">1.2467e+06</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>注：面积的单位是 平方公里 (km²)</p>
+</blockquote>
+
+<h2 class="relative group">二、数据探索 
+    <div id="二数据探索" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e4%ba%8c%e6%95%b0%e6%8d%ae%e6%8e%a2%e7%b4%a2" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<hr>
+<p>现在，基本的数据就准备完毕了。有了这么多数据，光瞪眼也只能看出来某一个值很大、某个值很小；或是你可以通过简单查找你感兴趣的国家。 Python 绘图工具可以帮助我们以图表的形式，通过对比更直观地展示一些东西。</p>
+
+<h3 class="relative group">1. GDP 总量和 GDP 增速 
+    <div id="1-gdp-总量和-gdp-增速" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#1-gdp-%e6%80%bb%e9%87%8f%e5%92%8c-gdp-%e5%a2%9e%e9%80%9f" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>首先对每一个国家六年的 GPD 总量求平均值，来代表这个国家的 GDP 水平。先来看看 GDP 水平最高和最低的10个国家：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Calculate average GDP for each country (2020-2025)</span>
+</span></span><span class="line"><span class="cl"><span class="n">year_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;2021&#39;</span><span class="p">,</span> <span class="s1">&#39;2022&#39;</span><span class="p">,</span> <span class="s1">&#39;2023&#39;</span><span class="p">,</span> <span class="s1">&#39;2024&#39;</span><span class="p">,</span> <span class="s1">&#39;2025&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Average_GDP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">year_columns</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Common function for creating horizontal bar chart</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_gdp_chart</span><span class="p">(</span><span class="n">data_df</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">invert_y</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Get top 10 countries by average GDP</span>
+</span></span><span class="line"><span class="cl"><span class="n">top_10_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;Average_GDP&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">create_gdp_chart</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">top_10_gdp</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Top 10 Countries by Average GDP&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">invert_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Get bottom 10 countries by average GDP</span>
+</span></span><span class="line"><span class="cl"><span class="n">bottom_10_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;Average_GDP&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">create_gdp_chart</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bottom_10_gdp</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Bottom 10 Countries by Average GDP&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">invert_y</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="GDP top10" src="./Top%2010%20Countries%20by%20Average%20GDP.png">
+
+  
+</figure>
+</p>
+<p>我们耳熟能详的大型国家无一例外地出现在这里。另外，柱体颜色用大洲颜色进行了标注，方便判断这些国家是哪个大洲的。或许在这里无伤大雅，但是下面这个图你一定需要。</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="GDP bottom10" src="./Bottom%2010%20Countries%20by%20Average%20GDP.png">
+
+  
+</figure>
+</p>
+<p>这些国家能看出来其中8个是大洋洲的岛国。除了它们，还剩两个国家分别是：</p>
+<ul>
+<li>Dominica(多米尼克): 加勒比&quot;自然之岛&rdquo;,火山温泉和热带雨林资源丰富</li>
+<li>São Tomé and Príncipe(圣多美和普林西比): 非洲第二小国,优质可可豆产地</li>
+</ul>
+<p>非洲第一小国是谁？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Africa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Area&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Country</th>
+          <th style="text-align: left">countryiso3code</th>
+          <th style="text-align: left">Continent</th>
+          <th style="text-align: right">population</th>
+          <th style="text-align: right">Area</th>
+          <th style="text-align: right">2020</th>
+          <th style="text-align: right">2021</th>
+          <th style="text-align: right">2022</th>
+          <th style="text-align: right">2023</th>
+          <th style="text-align: right">2024</th>
+          <th style="text-align: right">2025</th>
+          <th style="text-align: right">Average_GDP</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Seychelles</td>
+          <td style="text-align: left">SYC</td>
+          <td style="text-align: left">Africa</td>
+          <td style="text-align: right">111745</td>
+          <td style="text-align: right">455</td>
+          <td style="text-align: right">1384</td>
+          <td style="text-align: right">1490</td>
+          <td style="text-align: right">2018</td>
+          <td style="text-align: right">2187</td>
+          <td style="text-align: right">2168</td>
+          <td style="text-align: right">2198</td>
+          <td style="text-align: right">1907.5</td>
+      </tr>
+  </tbody>
+</table>
+<p>就是塞舌尔，刚好这个数据集有所收录。</p>
+<p><strong>Seychelles(塞舌尔)</strong>：印度洋上的奢华度假胜地，以原始自然美景、珍稀物种和高端旅游闻名的非洲最小国家。拥有世界最美海滩（如安塞拉齐奥海滩）；独特物种丰富，有象龟、海椰子、珍稀鸟类。</p>
+<p>作为反映国家经济情况的指标，GDP 增速也同样重要。<strong>气泡图</strong>非常适合用来描述多个变量。相比于散点图，它还有气泡大小和气泡颜色用来表示变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 提取数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_values</span> <span class="o">=</span> <span class="n">bubble_data</span><span class="p">[</span><span class="s1">&#39;Average_GDP&#39;</span><span class="p">]</span>           <span class="c1"># GDP总量 (X轴)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_values</span> <span class="o">=</span> <span class="n">bubble_data</span><span class="p">[</span><span class="s1">&#39;Average_Growth_Rate&#39;</span><span class="p">]</span>   <span class="c1"># 增长率 (Y轴)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># GDP最大的7国</span>
+</span></span><span class="line"><span class="cl"><span class="n">top_gdp</span> <span class="o">=</span> <span class="n">bubble_data</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;Average_GDP&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># GDP最小的7国</span>
+</span></span><span class="line"><span class="cl"><span class="n">top_gdp</span> <span class="o">=</span> <span class="n">bubble_data</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;Average_GDP&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 增长率最高的7国</span>
+</span></span><span class="line"><span class="cl"><span class="n">top_growth</span> <span class="o">=</span> <span class="n">bubble_data</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;Average_Growth_Rate&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 增长率最低的7国</span>
+</span></span><span class="line"><span class="cl"><span class="n">bottom_growth</span> <span class="o">=</span> <span class="n">bubble_data</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;Average_Growth_Rate&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="气泡图" src="./gdp_growth_bubble_chart.png">
+
+  
+</figure>
+</p>
+<ul>
+<li>这里的 平均 GDP 进行了 取对数处理，是为了将大差异的值放在同一张图里，相差一个 x 刻度相当于相差了 10 倍</li>
+<li>GDP 平均增速这里采用了<strong>几何平均数</strong>。相比与算术平均数，它在百分比增长这样存在<strong>复利效应</strong>的情况下描述更加准确
+<ul>
+<li>CAGR (Compound Annual Growth Rate)：复合年均增长率</li>
+<li>$CAGR = (最终值 / 初始值)^(1/年数) - 1$</li>
+</ul>
+</li>
+</ul>
+
+<h3 class="relative group">2. 人均 GDP 
+    <div id="2-人均-gdp" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#2-%e4%ba%ba%e5%9d%87-gdp" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>人均 GDP 用以反映国家劳动力创造经济的水平，高人均 GDP 意味着高收入高消费，是用来衡量是否发达国家的重要指标。</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="" src="./top10_gdp_per_capita.png">
+
+  
+</figure>
+</p>
+<ul>
+<li>Luxembourg(卢森堡): 欧洲金融中心和避税天堂,人均GDP常年全球第一</li>
+<li>Ireland(爱尔兰): 欧盟科技巨头税务基地,苹果、谷歌等跨国公司欧洲总部所在地</li>
+<li>Switzerland(瑞士): 全球银行业和精密制造中心,以中立国地位和高生活质量著称</li>
+<li>Norway(挪威): 北欧石油富国,主权财富基金规模全球最大,高福利社会典范</li>
+<li>Singapore(新加坡): 亚洲金融和贸易枢纽,以高效治理和零关税自由港闻名</li>
+<li>United States(美国): 世界第一大经济体和科技强国,创新能力和消费市场全球领先</li>
+<li>Iceland(冰岛): 北大西洋岛国,以地热能源、渔业和旅游业为支柱产业</li>
+<li>Qatar(卡塔尔): 中东天然气出口第一大国,人均GDP极高但贫富差距明显</li>
+<li>Denmark(丹麦): 北欧高福利国家,以童话王国、设计产业和绿色能源著称</li>
+<li>Australia(澳大利亚): 资源出口大国,以矿业、农业和宜居环境闻名的南半球发达国家</li>
+</ul>
+<p>10 个国家有 7 个来自欧洲，多为金融中心、资源富国和高福利国家，经济结构以服务业或高附加值产业为主。</p>
+
+<h3 class="relative group">3. 单位面积 GDP 
+    <div id="3-单位面积-gdp" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#3-%e5%8d%95%e4%bd%8d%e9%9d%a2%e7%a7%af-gdp" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>单位面积 GDP 可以反映国家的经济密度、城市化水平、土地利用效率。</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="单位面积 GDP" src="./top10_gdp_per_area.png">
+
+  
+</figure>
+</p>
+<ol>
+<li>Singapore (新加坡) - $675.1M/km²</li>
+</ol>
+<ul>
+<li>特点：全球第一，遥遥领先（是第二名的10倍）</li>
+<li>原因：
+<ul>
+<li>城市国家，100%土地高度开</li>
+<li>亚洲金融和贸易中心</li>
+<li>全球最繁忙港口之一</li>
+<li>GDP高达$485亿，但面积仅719 km²</li>
+<li>经济模式：金融、物流、高科技制造</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Malta (马耳他) - $67.3M/km²</li>
+</ol>
+<ul>
+<li>特点：地中海岛国，欧洲离岸金融中心</li>
+<li>原因：
+<ul>
+<li>旅游业发达（历史遗迹丰富）</li>
+<li>吸引外资和跨国公司注册</li>
+<li>EU成员国，地理位置优越</li>
+<li>面积：316 km²（比新加坡还小）</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>Bahrain (巴林) - $57.9M/km²</li>
+</ol>
+<ul>
+<li>特点：波斯湾岛国，中东金融中心</li>
+<li>原因：
+<ul>
+<li>石油和天然气资源</li>
+<li>中东银行业枢纽</li>
+<li>连接沙特的跨海大桥促进贸易</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>Luxembourg (卢森堡) - $33.4M/km²</li>
+</ol>
+<ul>
+<li>特点：欧洲内陆大公国，人均GDP全球第一</li>
+<li>原因：
+<ul>
+<li>国际金融中心（私人银行、投资基金）</li>
+<li>欧盟总部所在地之一</li>
+<li>税收优惠政策吸引跨国公司</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>San Marino (圣马力诺) - $31.0M/km²</li>
+</ol>
+<ul>
+<li>特点：世界最古老共和国，意大利境内的袖珍国</li>
+<li>原因：
+<ul>
+<li>旅游业（历史文化遗产）</li>
+<li>银行业和邮票销售</li>
+<li>免税购物</li>
+<li>面积：仅61 km²，全球第五小国</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>Netherlands (荷兰) - $26.6M/km²</li>
+</ol>
+<ul>
+<li>特点：唯一进入前10的&quot;中型国家&quot;</li>
+<li>原因：
+<ul>
+<li>欧洲门户（鹿特丹港：欧洲第一大港）</li>
+<li>农业高科技（温室农业全球领先）</li>
+<li>高度城市化（人口密度高）</li>
+<li>金融和物流中心</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>Israel (以色列) - $24.6M/km²</li>
+</ol>
+<ul>
+<li>特点：中东科技强国</li>
+<li>原因：
+<ul>
+<li>&ldquo;创业国度&rdquo;（高科技、军工产业）</li>
+<li>地中海沿岸，土地开发集中</li>
+<li>农业技术先进（滴灌技术）</li>
+<li>面积：20,770 km²，前10中最大的国家之一</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li>Switzerland (瑞士) - $20.8M/km²</li>
+</ol>
+<ul>
+<li>特点：阿尔卑斯山脉国家，高单位面积GDP令人惊讶</li>
+<li>原因：
+<ul>
+<li>全球银行业中心</li>
+<li>精密制造（手表、医疗器械）</li>
+<li>旅游业（滑雪胜地）</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li>Belgium (比利时) - $20.3M/km²</li>
+</ol>
+<ul>
+<li>特点：欧盟和北约总部所在地</li>
+<li>原因：
+<ul>
+<li>欧洲政治中心</li>
+<li>安特卫普港（钻石贸易中心）</li>
+<li>化工、制药产业发达</li>
+</ul>
+</li>
+</ul>
+<ol start="10">
+<li>Maldives (马尔代夫) - $20.2M/km²</li>
+</ol>
+<ul>
+<li>特点：印度洋岛国，最低海拔国家</li>
+<li>原因：
+<ul>
+<li>高端旅游业（奢侈度假村）</li>
+<li>渔业和水产品出口</li>
+<li>土地极度稀缺（1,192个岛屿，总面积仅298 km²）</li>
+</ul>
+</li>
+</ul>
+<p>小型国家通过金融、贸易和旅游实现高效经济模式，但这又何尝不是被迫之举。</p>
+
+<h3 class="relative group">三、结语 
+    <div id="三结语" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e4%b8%89%e7%bb%93%e8%af%ad" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<hr>
+<p>世界数据集能做的和能包含的远不止此，本文仅仅是抛出一个示例和一些启发：</p>
+<ul>
+<li>如何添加数据和探索数据</li>
+<li>选择正确的可视化方法能否让数据更生动</li>
+</ul>
+<hr>
+<p>感谢阅读</p>
+
+          
+          
+          
+        </div>
+        
+        
+  <details class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5">
+    
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
+    数据分析实例 -
+    这篇文章属于一个选集。
+  </summary>
+  
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B-%E5%AF%BC%E8%A8%80/">
+          § :
+          数据分析实例：导言
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        § :
+        本文
+      </div>
+    
+  
+
+
+  </details>
+
+
+        
+
+        
+
+      </div>
+
+      
+      
+        
+        
+          
+          
+        
+        
+        
+        <script
+          type="text/javascript"
+          src="/myblog/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
+          integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
+          data-oid="views_posts/数据分析实例合集/数据分析实例(一)：世界数据分析/index.md"
+          data-oid-likes="likes_posts/数据分析实例合集/数据分析实例(一)：世界数据分析/index.md"></script>
+      
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/myblog/posts/hugo-%E5%BB%BA%E7%AB%99%E4%B8%8E%E9%83%A8%E7%BD%B2/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Hugo 建站与部署</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-10-10T14:59:28&#43;08:00">2025年10月10日</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/myblog/posts/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B%E5%90%88%E9%9B%86/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B-%E5%AF%BC%E8%A8%80/">
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >数据分析实例：导言</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-10-10T16:20:57&#43;08:00">2025年10月10日</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0 z-10">
+  <a
+    href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部"
+    title="返回顶部">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+      
+      
+        
+          
+          
+      
+      
+      
+      <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400 ">
+        <ul class="flex list-none flex-col sm:flex-row">
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/myblog/privacy/"
+                title="">
+                
+                隐私政策
+              </a>
+            </li>
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/myblog/contact/"
+                title="">
+                
+                联系我
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          &copy;
+          2025
+          Lorden Jay
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/myblog/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js"
+    integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="http://localhost:1313/myblog/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>
