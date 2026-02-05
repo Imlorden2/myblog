@@ -84,6 +84,8 @@ rm hugo.toml  # 删除默认的配置文件
 
 ## 4. 创建文章
 
+> 写文章注意[文章命名要求](#文章命名要求)
+
 ```bash
 # bash commands !
 
@@ -277,9 +279,6 @@ Hugo 是一个用 Go 语言编写的开源静态网站生成器，由 Steve Fran
 - Markdown 编写内容
 
 
-
-
-
 **常用命令**
 
 ```bash
@@ -353,3 +352,70 @@ hugo version
 
 - 官方文档：https://gohugo.io/documentation/
 - 主题市场：https://themes.gohugo.io/
+
+### 文章命名规范
+
+#### 一. 存放位置
+在运行 `hugo new content posts/Test1.md` 命令之后，Test1.md 会自动创建在 `～/content/posts/Test1.md` 下
+- 如果是**纯文本文章**，可以直接书写，编辑上传；
+- 如果文章包含图片等非文本文件，建议创建文件夹 `~/content/posts/Test1`，然后修改文章文件名字为 `index.md`。
+
+这是 Hugo 的规范页面组织模式：
+```
+content/posts/
+└── hugo-建站与部署/
+   ├── index.md      # 文章内容
+   ├── cover.jpg     # 封面图
+   └── images/       # 相关图片
+         └── pic1.png
+```
+好处有：
+1. 资源管理集中：图片、附件等资源与文章在同一目录
+2. 相对路径引用：可直接使用 ![](cover.jpg)引用同目录资源
+3. 便于迁移：整个文件夹就是一个完整的文章单元
+4. cover.jpg 将自动成为 index.md 的封面图
+
+#### 二、构建系列
+
+> 开启：`config/_default/hugo.toml` 中配置 `series = "series"  # 启用系列功能`
+
+想要制作系列文章，需在文章 Front Matter 中添加 series 字段
+
+```
+---
+title: "系列文章第一篇"
+series: ["系列名"]  # 声明属于哪个系列
+weight: 1  # 系列内排序权重（可选）
+---
+```
+
+
+#### 三、标签和分类
+
+1. 配置方法：在文章 Front Matter 中添加字段
+
+```
+---
+tags: ["RPG", "BG3"]
+categories: ["游戏"]
+---
+```
+
+2. 区别
+
+分类（Categories）
+- 层级性：通常用于主要分类
+- 数量少：一篇文章通常1-2个分类
+- 范围广：如"技术"、"生活"、"随笔"
+- 例子：编程、数据分析、读书笔记
+
+标签（Tags）
+- 扁平化：更细粒度的关键词
+- 数量多：一篇文章可以有多个标签
+- 具体化：描述文章具体内容
+- 例子：Python、Hugo、Docker、算法
+
+3. 建议
+- Categories：1-2个，表示文章大类
+- Tags：3-5个，描述具体技术点
+- Series：用于连载或主题文章
