@@ -1,5 +1,4 @@
 ---
-title: "Blogs"
-description: "查看我的所有博客。"
+title: "我的博客"
+description: "博客文章"
 ---
-
