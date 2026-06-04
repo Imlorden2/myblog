@@ -109,7 +109,6 @@
 [[main]]
     name = "摄影"
     parent = "更多"
-    pageRef = "photograph"
     weight = 52
 
 # -- 底部菜单 --
