@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Hugo
+.hugo_build.lock
+/resources/_gen/
